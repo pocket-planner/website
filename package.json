@@ -1,0 +1,13 @@
+{
+  "name": "pocket-planner-coming-soon",
+  "version": "1.0.0",
+  "description": "Minimalist Coming Soon page for pocket-planner-app.com",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.11"
+  }
+}
