@@ -56,6 +56,36 @@
       A minimalist companion for your daily productivity. Coming soon.
     </p>
 
+    <!-- Email Subscription Form (Kit / ConvertKit) -->
+    <!-- Configure by replacing 'YOUR_KIT_FORM_ID' with your actual Kit Form ID. -->
+    <form action="https://app.convertkit.com/forms/9492617/subscriptions" method="post" class="subscribe-form" id="subscribe-form">
+      <input type="email" name="email_address" id="bd-email" placeholder="Enter your email address" required class="email-input" />
+      <button type="submit" class="submit-btn" aria-label="Subscribe">
+        <span>Notify Me</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </form>
+
+    <!-- 
+    Alternative Buttondown Form Integration:
+    To use Buttondown instead, uncomment the block below and comment out the Kit form above.
+    
+    <form action="https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME', 'popupwindow')" class="subscribe-form" id="subscribe-form">
+      <input type="email" name="email" id="bd-email" placeholder="Enter your email address" required class="email-input" />
+      <input type="hidden" value="1" name="embed" />
+      <button type="submit" class="submit-btn" aria-label="Subscribe">
+        <span>Notify Me</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </form>
+    -->
+
     <footer class="footer-info" id="footer-info">
       &copy; 2026 pocket-planner-app.com. All rights reserved.
     </footer>
