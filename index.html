@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pocket Planner — Coming Soon</title>
+  <title>Pocket Planner — Minimalist Weekly Task Planner</title>
   
   <!-- Primary Meta Tags -->
-  <meta name="title" content="Pocket Planner — Coming Soon">
-  <meta name="description" content="A minimalist companion for your daily productivity. Pocket Planner is coming soon to help you streamline your day.">
+  <meta name="title" content="Pocket Planner — Minimalist Weekly Task Planner">
+  <meta name="description" content="A minimalist desktop companion for weekly task planning and daily check-ins. Download now for Windows and macOS.">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pocket-planner-app.com/">
-  <meta property="og:title" content="Pocket Planner — Coming Soon">
-  <meta property="og:description" content="A minimalist companion for your daily productivity. Pocket Planner is coming soon to help you streamline your day.">
+  <meta property="og:title" content="Pocket Planner — Minimalist Weekly Task Planner">
+  <meta property="og:description" content="A minimalist desktop companion for weekly task planning and daily check-ins. Download now for Windows and macOS.">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://pocket-planner-app.com/">
-  <meta property="twitter:title" content="Pocket Planner — Coming Soon">
-  <meta property="twitter:description" content="A minimalist companion for your daily productivity. Pocket Planner is coming soon to help you streamline your day.">
+  <meta property="twitter:title" content="Pocket Planner — Minimalist Weekly Task Planner">
+  <meta property="twitter:description" content="A minimalist desktop companion for weekly task planning and daily check-ins. Download now for Windows and macOS.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +45,10 @@
 
   <!-- Main Content Container -->
   <main class="content-container">
-    <div class="status-badge" id="badge-status">
+    <a href="#downloads" class="status-badge" id="badge-status">
       <span class="pulse-dot"></span>
-      In Development
-    </div>
+      Desktop App Out Now
+    </a>
 
     <div class="logo-wrapper" id="logo-main">
       <img src="icon.png" alt="Pocket Planner" class="app-logo" />
@@ -59,38 +59,100 @@
     </h1>
     
     <p class="subtitle" id="subtitle-text">
-      A minimalist companion for your daily productivity. Coming soon.
+      A minimal desktop app for weekly task planning and daily workday check-ins. Keep your focus sharp and your plans entirely local.
     </p>
 
-    <!-- Email Subscription Form (Kit / ConvertKit) -->
-    <!-- Configure by replacing 'YOUR_KIT_FORM_ID' with your actual Kit Form ID. -->
-    <form action="https://app.convertkit.com/forms/9492617/subscriptions" method="post" class="subscribe-form" id="subscribe-form">
-      <input type="email" name="email_address" id="bd-email" placeholder="Enter your email address" required class="email-input" />
-      <button type="submit" class="submit-btn" aria-label="Subscribe">
-        <span>Notify Me</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
+    <!-- Download Section -->
+    <div class="download-section" id="downloads">
+      <a href="https://github.com/pocket-planner/desktop-app-releases/releases/latest" class="download-btn windows-btn" target="_blank" rel="noopener noreferrer">
+        <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M0 3.449L9.75 2.1v9.45H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.1zM10.95 1.95L24 0v11.55H10.95V1.95zM10.95 12.45H24v11.55l-13.05-1.95v-9.6z"/>
         </svg>
-      </button>
-    </form>
+        <div class="btn-text">
+          <span class="btn-subtext">Download for</span>
+          <span class="btn-title">Windows (.exe)</span>
+        </div>
+      </a>
+      <a href="https://github.com/pocket-planner/desktop-app-releases/releases/latest" class="download-btn macos-btn" target="_blank" rel="noopener noreferrer">
+        <svg class="os-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.5-.63.73-1.18 1.87-1.03 2.97 1.12.09 2.27-.58 2.98-1.41z"/>
+        </svg>
+        <div class="btn-text">
+          <span class="btn-subtext">Download for</span>
+          <span class="btn-title">macOS (.dmg)</span>
+        </div>
+      </a>
+    </div>
 
-    <!-- 
-    Alternative Buttondown Form Integration:
-    To use Buttondown instead, uncomment the block below and comment out the Kit form above.
-    
-    <form action="https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME', 'popupwindow')" class="subscribe-form" id="subscribe-form">
-      <input type="email" name="email" id="bd-email" placeholder="Enter your email address" required class="email-input" />
-      <input type="hidden" value="1" name="embed" />
-      <button type="submit" class="submit-btn" aria-label="Subscribe">
-        <span>Notify Me</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </button>
-    </form>
-    -->
+    <div class="brew-instruction">
+      <span>Or via Homebrew:</span>
+      <code>brew install --cask pocket-planner</code>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <h2 class="section-title">Minimalist Power</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Local-First & Private</h3>
+          <p>Your plans are saved directly to your local file system via secure storage. No cloud databases, no tracking, total control.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <h3>Smart Workday Reminders</h3>
+          <p>Configure notifications to gently nudge you with your "Next Up" task, active only during your specified workday hours.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+              <line x1="7" y1="2" x2="7" y2="22"></line>
+              <line x1="17" y1="2" x2="17" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+            </svg>
+          </div>
+          <h3>OS System Integration</h3>
+          <p>Control the app from the system tray, monitor task completion in the Windows taskbar, and view remaining count on the macOS Dock.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+          </div>
+          <h3>Weekly Carry-Forward</h3>
+          <p>Start each week fresh. Review and carry forward incomplete tasks from the previous week with a single click to stay on top of your goals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Subscription Section -->
+    <div class="subscription-section">
+      <h3 class="subscription-title">Stay Updated</h3>
+      <p class="subscription-subtitle">Sign up to get notified of major feature releases and future mobile/web versions.</p>
+      
+      <form action="https://app.convertkit.com/forms/9492617/subscriptions" method="post" class="subscribe-form" id="subscribe-form">
+        <input type="email" name="email_address" id="bd-email" placeholder="Enter your email address" required class="email-input" />
+        <button type="submit" class="submit-btn" aria-label="Subscribe">
+          <span>Subscribe</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
 
     <footer class="footer-info" id="footer-info">
       &copy; 2026 pocket-planner-app.com. All rights reserved.
