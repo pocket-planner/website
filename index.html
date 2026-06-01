@@ -191,6 +191,25 @@
     </footer>
   </main>
 
+  <!-- Lightbox Modal -->
+  <div id="showcase-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-arrow prev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" />
+      <div class="lightbox-caption"></div>
+    </div>
+    <button class="lightbox-arrow next" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
   <!-- Interactive Showcase Script -->
   <script>
     const showcaseData = {
@@ -306,6 +325,109 @@
             }
           }, 150);
         });
+      });
+
+      // Lightbox Carousel functionality
+      const lightbox = document.getElementById('showcase-lightbox');
+      const lightboxImg = lightbox.querySelector('.lightbox-img');
+      const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+      const lightboxClose = lightbox.querySelector('.lightbox-close');
+      const lightboxPrev = lightbox.querySelector('.lightbox-arrow.prev');
+      const lightboxNext = lightbox.querySelector('.lightbox-arrow.next');
+      const showcaseImages = document.querySelectorAll('.showcase-img');
+      const allImageElements = Array.from(showcaseImages);
+      let currentImageIndex = 0;
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background page
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // Restore scroll
+      }
+
+      function syncShowcaseState(targetImg) {
+        const imgId = targetImg.getAttribute('data-img-id');
+        const [tabKey, label] = imgId.split('-');
+        
+        // Find and click tab
+        const tabButton = document.querySelector(`.showcase-tab[data-tab="${tabKey}"]`);
+        if (tabButton && !tabButton.classList.contains('active')) {
+          tabButton.click();
+        }
+        
+        // If there's a sub-toggle, wait for generation then click
+        if (label !== 'Default') {
+          setTimeout(() => {
+            const subtoggleButtons = document.querySelectorAll('.subtoggle-btn');
+            subtoggleButtons.forEach(btn => {
+              if (btn.textContent === label && !btn.classList.contains('active')) {
+                btn.click();
+              }
+            });
+          }, 160);
+        }
+      }
+
+      function navigateLightbox(direction) {
+        if (direction === 'next') {
+          currentImageIndex = (currentImageIndex + 1) % allImageElements.length;
+        } else if (direction === 'prev') {
+          currentImageIndex = (currentImageIndex - 1 + allImageElements.length) % allImageElements.length;
+        }
+        
+        const nextImg = allImageElements[currentImageIndex];
+        
+        // Sync the main page tabs/image state behind the lightbox
+        syncShowcaseState(nextImg);
+        
+        // Fade transition on lightbox image
+        lightboxImg.classList.add('fade-out');
+        setTimeout(() => {
+          lightboxImg.src = nextImg.src;
+          lightboxImg.alt = nextImg.alt;
+          lightboxCaption.textContent = nextImg.alt;
+          lightboxImg.classList.remove('fade-out');
+        }, 100);
+      }
+
+      showcaseImages.forEach(img => {
+        img.addEventListener('click', () => {
+          if (img.classList.contains('active')) {
+            currentImageIndex = allImageElements.indexOf(img);
+            openLightbox(img);
+          }
+        });
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+      lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+      
+      lightbox.addEventListener('click', (e) => {
+        // Close only if clicking the background backdrop or spacing wrapper
+        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowRight') {
+            navigateLightbox('next');
+          } else if (e.key === 'ArrowLeft') {
+            navigateLightbox('prev');
+          }
+        }
       });
     });
   </script>
