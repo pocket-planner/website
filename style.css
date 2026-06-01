@@ -544,18 +544,24 @@ body {
 }
 
 .showcase-img {
-  max-width: 100%;
-  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 2 * clamp(0.5rem, 2vw, 1.25rem));
+  max-height: calc(100% - 2 * clamp(0.5rem, 2vw, 1.25rem));
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
   transition: opacity 0.25s ease;
-  opacity: 1;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.showcase-img.fade-out {
-  opacity: 0;
+.showcase-img.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 

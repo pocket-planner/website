@@ -108,7 +108,14 @@
       <div class="showcase-window-wrapper">
         <div class="showcase-window">
           <div class="window-content">
-            <img src="screenshots/main_grid.png" alt="Pocket Planner Weekly Grid View" class="showcase-img" id="showcase-main-img" />
+            <img src="screenshots/main_grid.png" alt="Pocket Planner Weekly Grid View" class="showcase-img active" data-img-id="grid-Default" />
+            <img src="screenshots/quick_add.png" alt="Pocket Planner Quick Add capture panel" class="showcase-img" data-img-id="quick-add-Default" />
+            <img src="screenshots/global_search.png" alt="Pocket Planner Global Search command menu" class="showcase-img" data-img-id="search-Default" />
+            <img src="screenshots/recurring_tasks.png" alt="Pocket Planner Recurring Tasks list overview" class="showcase-img" data-img-id="recurring-Overview" />
+            <img src="screenshots/recurrunce_setup.png" alt="Pocket Planner Recurrence Schedule setup" class="showcase-img" data-img-id="recurring-Setup" />
+            <img src="screenshots/recurring_tasks_management.png" alt="Pocket Planner Recurring Tasks management panel" class="showcase-img" data-img-id="recurring-Management" />
+            <img src="screenshots/tray_icon.png" alt="Pocket Planner System Tray quick launch menu" class="showcase-img" data-img-id="settings-Tray Icon" />
+            <img src="screenshots/settings_menu.png" alt="Pocket Planner Application Settings" class="showcase-img" data-img-id="settings-Settings" />
           </div>
         </div>
       </div>
@@ -227,31 +234,22 @@
       }
     };
 
-    function preloadAllImages() {
-      Object.values(showcaseData).forEach(tab => {
-        tab.images.forEach(img => {
-          const temp = new Image();
-          temp.src = img.path;
-        });
-      });
-    }
-
-    function changeShowcaseImage(src, altText) {
-      const imgElement = document.getElementById('showcase-main-img');
-      imgElement.classList.add('fade-out');
+    function changeShowcaseImage(tabKey, label) {
+      const imgId = `${tabKey}-${label}`;
+      const currentActive = document.querySelector('.showcase-img.active');
+      const newActive = document.querySelector(`.showcase-img[data-img-id="${imgId}"]`);
       
-      const tempImg = new Image();
-      tempImg.onload = () => {
-        imgElement.src = src;
-        imgElement.alt = altText;
-        imgElement.classList.remove('fade-out');
-      };
-      tempImg.src = src;
+      if (currentActive === newActive) return;
+      
+      if (currentActive) {
+        currentActive.classList.remove('active');
+      }
+      if (newActive) {
+        newActive.classList.add('active');
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      preloadAllImages();
-
       const tabs = document.querySelectorAll('.showcase-tab');
       const infoContainer = document.getElementById('showcase-panel');
       const featureTitle = infoContainer.querySelector('.showcase-feature-title');
@@ -275,7 +273,7 @@
           infoContainer.classList.add('info-fade-out');
           
           const firstImg = data.images[0];
-          changeShowcaseImage(firstImg.path, `${data.title} - ${firstImg.label}`);
+          changeShowcaseImage(tabKey, firstImg.label);
           
           subtogglesContainer.style.opacity = '0';
           setTimeout(() => {
@@ -296,7 +294,7 @@
                   if (btn.classList.contains('active')) return;
                   subtoggleWrapper.querySelector('.subtoggle-btn.active').classList.remove('active');
                   btn.classList.add('active');
-                  changeShowcaseImage(img.path, `${data.title} - ${img.label}`);
+                  changeShowcaseImage(tabKey, img.label);
                 });
                 subtoggleWrapper.appendChild(btn);
               });
