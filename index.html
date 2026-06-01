@@ -89,6 +89,31 @@
       <code>brew install --cask pocket-planner</code>
     </div>
 
+    <!-- Interactive App Showcase -->
+    <section class="showcase-section" id="showcase">
+      <div class="showcase-tabs" role="tablist">
+        <button class="showcase-tab active" role="tab" aria-selected="true" aria-controls="showcase-panel" data-tab="grid">Weekly Grid</button>
+        <button class="showcase-tab" role="tab" aria-selected="false" aria-controls="showcase-panel" data-tab="quick-add">Quick Add</button>
+        <button class="showcase-tab" role="tab" aria-selected="false" aria-controls="showcase-panel" data-tab="search">Global Search</button>
+        <button class="showcase-tab" role="tab" aria-selected="false" aria-controls="showcase-panel" data-tab="recurring">Recurring Tasks</button>
+        <button class="showcase-tab" role="tab" aria-selected="false" aria-controls="showcase-panel" data-tab="settings">Tray & Settings</button>
+      </div>
+
+      <div class="showcase-info" id="showcase-panel" role="tabpanel">
+        <h3 class="showcase-feature-title">Weekly Planner Grid</h3>
+        <p class="showcase-feature-desc">A bird's-eye view of your entire week. Easily visualize, organize, and drag-and-drop tasks to keep your priorities in line.</p>
+        <div class="window-subtoggles-container"></div>
+      </div>
+
+      <div class="showcase-window-wrapper">
+        <div class="showcase-window">
+          <div class="window-content">
+            <img src="/screenshots/main_grid.png" alt="Pocket Planner Weekly Grid View" class="showcase-img" id="showcase-main-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features-section" id="features">
       <h2 class="section-title">Minimalist Power</h2>
@@ -158,5 +183,133 @@
       &copy; 2026 pocket-planner-app.com. All rights reserved.
     </footer>
   </main>
+
+  <!-- Interactive Showcase Script -->
+  <script>
+    const showcaseData = {
+      grid: {
+        title: "Weekly Planner Grid",
+        description: "A bird's-eye view of your entire week. Easily visualize, organize, and drag-and-drop tasks to keep your priorities in line.",
+        images: [
+          { label: "Default", path: "/screenshots/main_grid.png" }
+        ]
+      },
+      "quick-add": {
+        title: "Lightning-Fast Task Capture",
+        description: "Add tasks instantly from anywhere with a keyboard shortcut. Write natural language descriptions and dispatch them to specific days of the week.",
+        images: [
+          { label: "Default", path: "/screenshots/quick_add.png" }
+        ]
+      },
+      search: {
+        title: "Instant Search & Retrieval",
+        description: "Find any task, project, or note in milliseconds with a powerful global search bar. Access historical tasks and check-ins instantly.",
+        images: [
+          { label: "Default", path: "/screenshots/global_search.png" }
+        ]
+      },
+      recurring: {
+        title: "Smart Recurring Schedules",
+        description: "Put your routine on autopilot. Configure flexible recurrence schedules for daily, weekly, or custom workday intervals.",
+        images: [
+          { label: "Overview", path: "/screenshots/recurring_tasks.png" },
+          { label: "Setup", path: "/screenshots/recurrunce_setup.png" },
+          { label: "Management", path: "/screenshots/recurring_tasks_management.png" }
+        ]
+      },
+      settings: {
+        title: "Seamless System Integration",
+        description: "Keep planning at your fingertips. Minimize to the system tray, view quick task counts on macOS or Windows, and customize settings.",
+        images: [
+          { label: "Tray Icon", path: "/screenshots/tray_icon.png" },
+          { label: "Settings", path: "/screenshots/settings_menu.png" }
+        ]
+      }
+    };
+
+    function preloadAllImages() {
+      Object.values(showcaseData).forEach(tab => {
+        tab.images.forEach(img => {
+          const temp = new Image();
+          temp.src = img.path;
+        });
+      });
+    }
+
+    function changeShowcaseImage(src, altText) {
+      const imgElement = document.getElementById('showcase-main-img');
+      imgElement.classList.add('fade-out');
+      
+      const tempImg = new Image();
+      tempImg.onload = () => {
+        imgElement.src = src;
+        imgElement.alt = altText;
+        imgElement.classList.remove('fade-out');
+      };
+      tempImg.src = src;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      preloadAllImages();
+
+      const tabs = document.querySelectorAll('.showcase-tab');
+      const infoContainer = document.getElementById('showcase-panel');
+      const featureTitle = infoContainer.querySelector('.showcase-feature-title');
+      const featureDesc = infoContainer.querySelector('.showcase-feature-desc');
+      const subtogglesContainer = document.querySelector('.window-subtoggles-container');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          if (tab.classList.contains('active')) return;
+          
+          document.querySelector('.showcase-tab.active').classList.remove('active');
+          tab.classList.add('active');
+          
+          tabs.forEach(t => {
+            t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+          });
+          
+          const tabKey = tab.getAttribute('data-tab');
+          const data = showcaseData[tabKey];
+          
+          infoContainer.classList.add('info-fade-out');
+          
+          const firstImg = data.images[0];
+          changeShowcaseImage(firstImg.path, `${data.title} - ${firstImg.label}`);
+          
+          subtogglesContainer.style.opacity = '0';
+          setTimeout(() => {
+            featureTitle.textContent = data.title;
+            featureDesc.textContent = data.description;
+            infoContainer.classList.remove('info-fade-out');
+            
+            if (data.images.length > 1) {
+              subtogglesContainer.innerHTML = '';
+              const subtoggleWrapper = document.createElement('div');
+              subtoggleWrapper.className = 'window-subtoggles';
+              
+              data.images.forEach((img, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `subtoggle-btn${idx === 0 ? ' active' : ''}`;
+                btn.textContent = img.label;
+                btn.addEventListener('click', () => {
+                  if (btn.classList.contains('active')) return;
+                  subtoggleWrapper.querySelector('.subtoggle-btn.active').classList.remove('active');
+                  btn.classList.add('active');
+                  changeShowcaseImage(img.path, `${data.title} - ${img.label}`);
+                });
+                subtoggleWrapper.appendChild(btn);
+              });
+              
+              subtogglesContainer.appendChild(subtoggleWrapper);
+              subtogglesContainer.style.opacity = '1';
+            } else {
+              subtogglesContainer.innerHTML = '';
+            }
+          }, 150);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
